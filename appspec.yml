@@ -6,7 +6,7 @@ Resources:
   - myApp:
       Type: AWS::ECS::Service # Placeholder, CodeDeploy doesn't have an EKS resource type
       Properties:
-        TaskDefinition: "arn:aws:ecs:us-east-1:913524942450:task-definition/dummy:1" # Dummy ARN
+        TaskDefinition: "arn:aws:ecs:<region>:913524942450:task-definition/dummy:1" # Dummy ARN
         LoadBalancerInfo:
           ContainerName: "brain-tasks-container" # Must match container name in imagedefinitions.json
           ContainerPort: 80 # Must match container port in imagedefinitions.json
