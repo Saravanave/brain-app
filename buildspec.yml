@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Building Docker image...
       - docker build -t brain-tasks-app .
-      - docker tag brain-tasks-app:latest 913524942450.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:latest
+      - docker tag brain-tasks-app:latest 913524942450.dkr.ecr.us-east-1.amazonaws.com/brain-tasks-app:latest
   post_build:
     commands:
       - echo Pushing Docker image to ECR...
