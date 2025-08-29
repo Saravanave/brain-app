@@ -18,6 +18,9 @@ phases:
       - docker push 913524942450.dkr.ecr.us-east-1.amazonaws.com/brain-task-app:latest
       - echo Writing image definitions...
       - printf '[{"name":"brain-tasks-container","imageUri":"913524942450.dkr.ecr.us-east-1.amazonaws.com/brain-task-app:latest"}]' > imagedefinitions.json
+      - echo "Contents of imagedefinitions.json:"
+      - cat imagedefinitions.json
+      - ls -la
 
 artifacts:
   files:
