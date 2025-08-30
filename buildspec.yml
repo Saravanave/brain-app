@@ -5,20 +5,22 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 913524942450.dkr.ecr.us-east-1.amazonaws.com
+      - echo Creating placeholder image definitions...
+      - printf '[{"name":"brain-tasks-container","imageUri":"placeholder"}]' > imagedefinitions.json
 
   build:
     commands:
       - echo Building Docker image...
       - docker build -t brain-task-app .
       - docker tag brain-task-app:latest 913524942450.dkr.ecr.us-east-1.amazonaws.com/brain-task-app:latest
-      # REMOVE THIS: - echo "Deploying using imagedefinitions.json..."
-      # REMOVE THIS: - cat imagedefinitions.json
+      - echo "Deploying using imagedefinitions.json..."
+      - cat imagedefinitions.json
 
   post_build:
     commands:
       - echo Pushing Docker image to ECR...
       - docker push 913524942450.dkr.ecr.us-east-1.amazonaws.com/brain-task-app:latest
-      - echo Writing image definitions...
+      - echo Updating image definitions with actual image...
       - printf '[{"name":"brain-tasks-container","imageUri":"913524942450.dkr.ecr.us-east-1.amazonaws.com/brain-task-app:latest"}]' > imagedefinitions.json
 
 artifacts:
