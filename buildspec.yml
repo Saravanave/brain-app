@@ -11,6 +11,8 @@ phases:
       - echo Building Docker image...
       - docker build -t brain-task-app .
       - docker tag brain-task-app:latest 913524942450.dkr.ecr.us-east-1.amazonaws.com/brain-task-app:latest
+      - echo "Deploying using imagedefinitions.json..."
+      - cat imagedefinitions.json
 
 
   post_build:
