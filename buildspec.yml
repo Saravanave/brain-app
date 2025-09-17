@@ -5,7 +5,7 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - $(aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 913524942450.dkr.ecr.ap-south-1.amazonaws.com)
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 913524942450.dkr.ecr.ap-south-1.amazonaws.com
       - REPO_URI=913524942450.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app
       - IMAGE_TAG=latest
 
