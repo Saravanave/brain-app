@@ -39,7 +39,7 @@ Follow these steps to set up and deploy your React application.
 
 ### Step 1: Prepare Your Application Files
 
-Ensure the following files are present at the root of your `React_App_Deployment` GitHub repository:
+Ensure the following files are present at the root of your `Brain_App_Deployment` GitHub repository:
 
 1.  **`Dockerfile`**: Defines the multi-stage Docker build for your React application.
 
