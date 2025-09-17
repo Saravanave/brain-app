@@ -5,7 +5,7 @@ metadata:
   labels:
     app: brain-tasks-app
 spec:
-  replicas: 2
+  replicas: 2 # You can adjust the number of replicas
   selector:
     matchLabels:
       app: brain-tasks-app
@@ -15,10 +15,9 @@ spec:
         app: brain-tasks-app
     spec:
       containers:
-        - name: brain-tasks-container
-          image: 913524942450.dkr.ecr.us-east-1.amazonaws.com/brain-task-app:latest
-          ports:
-            - containerPort: 80
+      - name: brain-tasks-container
+        image: 913524942450.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:latest
+        ports:
+        - containerPort: 80
       imagePullSecrets:
-        - name: ecr-secret
-
+      - name: ecr-secret
