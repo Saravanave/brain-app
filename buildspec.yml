@@ -4,21 +4,26 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 913524942450.dkr.ecr.ap-south-1.amazonaws.com
+      - aws --version
+      - $(aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 913524942450.dkr.ecr.ap-south-1.amazonaws.com)
+      - REPO_URI=913524942450.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app
+      - IMAGE_TAG=latest
+
   build:
     commands:
       - echo Building Docker image...
-      - docker build -t brain-tasks-app .
-      - docker tag brain-tasks-app:latest 913524942450.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:latest
+      - docker build -t $REPO_URI:$IMAGE_TAG .
+      - docker push $REPO_URI:$IMAGE_TAG
+
   post_build:
     commands:
-      - echo Pushing Docker image to ECR...
-      - docker push 913524942450.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:latest
-      - echo Writing image definitions...
-      - printf '[{"name":"brain-tasks-container","imageUri":"913524942450.dkr.ecr.ap-south-1.amazonaws.com"}]' > imagedefinitions.json
+      - echo Updating kubeconfig...
+      - aws eks update-kubeconfig --region ap-south-1 --name brain-app-cluster
+      - echo Applying Kubernetes manifests...
+      - kubectl apply -f deployment.yaml
+      - kubectl apply -f service.yaml
+
 artifacts:
   files:
-    - appspec.yml
     - deployment.yaml
     - service.yaml
-    - imagedefinitions.json
