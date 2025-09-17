@@ -21,4 +21,5 @@ artifacts:
     - appspec.yml
     - deployment.yaml
     - service.yaml
+    - default
     - imagedefinitions.json
