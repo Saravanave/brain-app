@@ -13,7 +13,7 @@ phases:
   post_build:
     commands:
       - echo Pushing Docker image to ECR...
-      - docker push 913524942450.dkr.ecr.ap-south-1.amazonaws.com/brain-task-app:latest
+      - docker push 913524942450.dkr.ecr.ap-south-1.amazonaws.com/brain-tasks-app:latest
       - echo Writing image definitions...
       - printf '[{"name":"brain-tasks-container","imageUri":"913524942450.dkr.ecr.ap-south-1.amazonaws.com"}]' > imagedefinitions.json
 artifacts:
