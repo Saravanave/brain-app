@@ -1,4 +1,4 @@
-# React App Deployment on AWS EKS with CI/CD
+# React Brain App Deployment on AWS EKS with CI/CD
 
 This project demonstrates a robust Continuous Integration and Continuous Delivery (CI/CD) pipeline for deploying a React application to an Amazon Elastic Kubernetes Service (EKS) cluster using AWS CodePipeline, CodeBuild, and ECR.
 
